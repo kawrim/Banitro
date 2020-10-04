@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
+import {withRouter} from "react-router-dom"
 import { SnackbarProvider, useSnackbar } from "notistack";
 import {notifReq} from "../api/api";
 import {Button} from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import {useDispatch, useSelector} from "react-redux";
-import {setNotifyCount, setPopUp} from "../redux/actions/actions";
+import {setNotifyCount, setPopUp, setSpinner} from "../redux/actions/actions";
 
-export const Toast = (props) => {
+function Toast (props) {
 
     const [foreGround,setForeGround]=useState(true)
 
@@ -27,17 +28,22 @@ export const Toast = (props) => {
     const dispatch=useDispatch()
 
     const goToPriceList=(orderId)=>{
-        // alert('hi')
+        notif.data.map(item=>closeSnackbar())
+        dispatch(setSpinner(true))
         localStorage.setItem('order_id', orderId)
-        props.history.push('/wait')
+        setTimeout(()=>{
+            dispatch(setSpinner(false))
+            props.history.push('/wait')
+        },2000)
     }
 
-    const action = (key) => (
+    const action = (key,k) => (
+
         <React.Fragment>
             {/*<IconButton size="small" aria-label="close" color="inherit" onClick={()=> { this.props.closeSnackbar(key) }}>*/}
             {/*    <CloseIcon fontSize="small" />*/}
             {/*</IconButton>*/}
-            <Button color="inherit" onClick={() => { goToPriceList(key); }}>
+            <Button variant="text" color="inherit" onClick={() => { goToPriceList(key)}}>
                 مشاهده
             </Button>
             {/*<Button onClick={() => { this.props.closeSnackbar(key) }}>*/}
@@ -79,13 +85,12 @@ export const Toast = (props) => {
     useEffect(()=>{
         if (notif){
             notif.data.map((item) => enqueueSnackbar(` 
-            قیمت   
+            قیمت    
             ${item.car.name}
            ارسال شد! `,
                 {
                     variant:'success',
                     action:action(item.order_id),
-                    onClose:closeSnackbar,
                     autoHideDuration:5000,
                     anchorOrigin: {
                         vertical: 'top',
@@ -97,3 +102,6 @@ export const Toast = (props) => {
 
     return <div></div>;
 };
+
+
+export default withRouter(Toast)

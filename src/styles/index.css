@@ -483,6 +483,7 @@ input[type="radio"], input[type="checkbox"] {
   height: 100%!important;
   right: 0;
   left: 0;
+  z-index: 1500;
   /*display: flex;*/
   flex-direction: column!important;
   justify-content: center!important;
@@ -1323,13 +1324,6 @@ input[type="radio"], input[type="checkbox"] {
   /*line-height: 1.5rem;*/
 
 }
-.MuiButton-label{
-  font-size: 10pt;
-}
-.SnackbarItem-message-26{
-  font-size: 10pt;
-}
-
 
 
 
@@ -1392,6 +1386,13 @@ input[type="radio"], input[type="checkbox"] {
     width: 6.6rem;
     height: 6.6rem;
   }
+  .MuiButton-label{
+    font-size: .85rem;
+  }
+  .MuiSnackbar-root div{
+    font-size: .85rem;
+  }
+
 
 }
 
