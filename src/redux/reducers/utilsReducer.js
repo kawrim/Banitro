@@ -7,7 +7,7 @@ const INITIAL_STATE={
     firebase:'',
     notifyCount:0,
     updateNotify:0,
-    popUp:{},
+    popUp:null,
     cancelOrder:false,
     successOrder:false,
 

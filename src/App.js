@@ -59,6 +59,16 @@ function App(props) {
     const notifyCount=useSelector(state=>state.utils.notifyCount)
     const popup=useSelector(state=>state.utils.popUp)
 
+    // useEffect(()=>{
+    //     props.history.listen(() => {
+    //         if (window.swUpdateReady) {
+    //             window.swUpdateReady = false;
+    //             window.stop();
+    //             window.location.reload();
+    //         }
+    //     },[])
+    // })
+
     const dispatch = useDispatch();
     const Spinner = useSelector((state) => state.utils.spinner);
     const [registered, setRegistered] = useState(false);
@@ -384,7 +394,7 @@ function App(props) {
                     ""
                 ) : (
                     <div className="Bottom-Menu">
-                        <a href="tel:+2191303101" className="text-decoration-none">
+                        <a href="tel:+2191303101" className="text-decoration-none" id="Contact-Btn">
                             <div>
                                 {/*<FontAwesomeIcon icon={faPhone}/>*/}
                                 <PhoneEnabledIcon style={{ fontSize: "17pt" }} color="action" />
@@ -392,13 +402,13 @@ function App(props) {
                             </div>
                         </a>
 
-                        <div onClick={goToHome}>
+                        <div onClick={goToHome} id="Home-Btn">
                             {/*<FontAwesomeIcon icon={faHome}/>*/}
                             <HomeIcon style={{ fontSize: "17pt" }} color="action" />
                             <span className="Bottom-text">خانه</span>
                         </div>
 
-                        <div onClick={goToReports}>
+                        <div onClick={goToReports} id="Reports-Btn">
                             {/*<FontAwesomeIcon icon={faList}/>*/}
                             {notifyCount ? (
                                 <Badge badgeContent={notifyCount} color="secondary">
@@ -413,7 +423,7 @@ function App(props) {
                             <span className="Bottom-text">سفارشات من</span>
                         </div>
 
-                        <div onClick={goToProfile}>
+                        <div onClick={goToProfile} id="Profile-Btn">
                             {/*<FontAwesomeIcon icon={faUser}/>*/}
                             <AccountCircleIcon style={{ fontSize: "17pt" }} color="action" />
                             <span className="Bottom-text">پروفایل</span>

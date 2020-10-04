@@ -22,7 +22,7 @@ const isLocalhost = Boolean(
 
 export function register(config) {
     //Delete all caches and keep only one
-    const cachNameToKeep = 'ver_3.0';
+    const cachNameToKeep = 'ver_4.0';
 
     if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
         // The URL constructor is available in all browsers that support SW.
