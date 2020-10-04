@@ -49,9 +49,9 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import { isPwaReq, notifReq } from "./api/api";
-import { Toast } from "./components/Toast";
 import $ from "jquery";
 import ShowOnce from "./middleware/ShowOnce";
+import Toast from "./components/Toast";
 
 
 
