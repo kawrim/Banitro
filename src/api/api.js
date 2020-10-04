@@ -19,7 +19,12 @@ export const profileReq = () => axiosAgent.get('/api/v1/profile');
 export const profileEditReq = (body) => axiosAgent.post('/api/v1/profile/edit', body);
 export const brandsReq = () => axiosAgent.get('/api/v1/cars');
 export const searchReq = (body) => axiosAgent.post('/api/v1/search', body);
-export const sendCodeReq = (body) => axiosAgent.post('/api/v1/otp', body)
-export const orderSubmitReq = (body) => axiosAgent.post('/api/v1/order_submit', body)
-export const finalReq = (body) => axiosAgent.post('/api/v1/set', body)
-export const regLoginReq = (body) => axiosAgent.post('/api/v1/loginregister', body)
+export const sendCodeReq = (body) => axiosAgent.post('/api/v1/otp', body);
+export const orderSubmitReq = (body) => axiosAgent.post('/api/v1/order_submit', body);
+export const finalReq = (body) => axiosAgent.post('/api/v1/set', body);
+export const regLoginReq = (body) => axiosAgent.post('/api/v1/loginregister', body);
+
+
+export const cancelReq = (body) => axiosAgent.post('/api/v1/cancel', body);
+export const isPwaReq = () => axiosAgent.post('/api/v1/is_pwa');
+export const notifReq = () => axiosAgent.get('/api/v1/notif');

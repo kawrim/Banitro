@@ -1153,15 +1153,20 @@ input[type="radio"], input[type="checkbox"] {
   align-items: center;
 }
 .Bottom-Menu svg{
-  color: #2b2b2b;
-  font-size: 14pt;
-  margin-top: .2rem;
+  /*color: #2b2b2b;*/
+  /*font-size: 14pt;*/
+  /*margin-top: .2rem;*/
 }
-.Bottom-Menu span{
+.Bottom-text {
   color: #2b2b2b;
   font-size: 9pt;
-  margin-top: .2rem;
+  margin-top: .07rem;
 }
+.MuiBadge-badge {
+  font-size: .94rem!important;
+  line-height: 0rem;
+}
+
 .IOS{
   display: flex;
   flex-direction: column;
@@ -1263,6 +1268,107 @@ input[type="radio"], input[type="checkbox"] {
 /*  background-size: 32% auto;*/
 /*  background-repeat: no-repeat;*/
 /*}*/
+
+.Notify-Badge{
+  position: absolute;
+  right: 12%;
+  top: 5%;
+  background-color: #f50057;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  width: 23px;
+  height: 23px;
+  font-size: 11pt;
+  padding: 2px;
+}
+
+/*.Notify-Badge{*/
+/*  position: absolute;*/
+/*  right: 18%;*/
+/*  top: 17%;*/
+/*  background-color: #f50057;*/
+/*  color: white;*/
+/*  border-radius: 50%;*/
+/*  text-align: center;*/
+/*  width: 10px;*/
+/*  height: 10px;*/
+/*  font-size: 11pt;*/
+/*  padding: 2px;*/
+/*}*/
+
+.Delete-Order-Badge{
+  background-color: #f50057!important;
+  opacity: 1!important;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  color: white;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  z-index: 3;
+}
+.Delete-Order-Badge  span{
+  font-size: 20pt!important;
+  font-weight: lighter;
+  margin-top: .2rem;
+  color: white;
+  text-shadow: none;
+  /*line-height: 1.5rem;*/
+
+}
+.MuiButton-label{
+  font-size: 10pt;
+}
+.SnackbarItem-message-26{
+  font-size: 10pt;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

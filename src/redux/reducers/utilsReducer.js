@@ -4,7 +4,12 @@ const INITIAL_STATE={
     brands:[],
     token:'',
     spinner:false,
-    firebase:''
+    firebase:'',
+    notifyCount:0,
+    updateNotify:0,
+    popUp:{},
+    cancelOrder:false,
+    successOrder:false,
 
 }
 
@@ -29,6 +34,26 @@ const utilsReducer=(state=INITIAL_STATE,action)=>{
         case 'FIREBASE':
             return Object.assign({},state,{
                 firebase:action.payload
+            });
+        case 'NOTIFY_COUNT':
+            return Object.assign({},state,{
+                notifyCount:action.payload
+            });
+        case 'UPDATE_NOTIFY':
+            return Object.assign({},state,{
+                updateNotify:state+1
+            });
+        case 'SET_POPUP':
+            return Object.assign({},state,{
+                popUp:action.payload
+            });
+        case 'CANCEL_ORDER':
+            return Object.assign({},state,{
+                cancelOrder:action.payload
+            });
+        case 'SUCCESS_ORDER':
+            return Object.assign({},state,{
+                successOrder:action.payload
             });
         default :
             return state

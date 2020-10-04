@@ -3,14 +3,15 @@ import backImg from "../assets/imgs/1gt7khaasdokgsgo48.jpg";
 import Header from "../components/Header";
 import {withRouter} from "react-router-dom"
 import ConnectionErr from "../components/Connection_Err";
-import {checkReq, finalDataReq, finalReq, setToken} from "../api/api";
-import {Logout, setSpinner} from "../redux/actions/actions";
+import {cancelReq, checkReq, finalDataReq, finalReq, setToken} from "../api/api";
+import {Logout, setCancelOrder, setSpinner, setSuccessOrder, updateNotify} from "../redux/actions/actions";
 import {useDispatch} from "react-redux";
 import {showPrice} from "../components/functions";
 import {GAmodalView, GAview} from "../index";
 import ReactGA from "react-ga";
 import $ from "jquery";
 import {keys} from "@material-ui/core/styles/createBreakpoints";
+import Badge from "@material-ui/core/Badge";
 
 function Finalize(props) {
 
@@ -57,8 +58,8 @@ function Finalize(props) {
                                         dispatch(Logout())
                                         props.history.push('/')
                                     } else {
+                                        dispatch(updateNotify())
                                         setSuggest(res.data.response)
-                                        // console.log(res.data.response)
                                     }
                                 }
                             } else if (res.data.error) {
@@ -77,9 +78,8 @@ function Finalize(props) {
             .catch(err => {
                 dispatch(setSpinner(false))
                 setMessage('خطا در برقراری ارتباط')
+                props.history.push('/brands')
             })
-
-
     }, [])
 
     let sumition = 0;
@@ -168,6 +168,7 @@ function Finalize(props) {
                             dispatch(Logout())
                             props.history.push('/')
                         } else {
+                            dispatch(setSuccessOrder(true))
                             props.history.push('/success')
                         }
                     }
@@ -177,6 +178,25 @@ function Finalize(props) {
                     setMessage('خطا در برقراری ارتباط')
                 })
         }
+    }
+
+    const handleCancel=()=>{
+        $('#Cancel-modal').modal('show')
+    }
+
+    const cancelOrder=()=>{
+        dispatch(setSpinner(true))
+        let body=new FormData()
+        body.append('order_id',OrderId)
+        cancelReq(body)
+            .then(res=>{
+                dispatch(setSpinner(false))
+                dispatch(setCancelOrder(true))
+                props.history.push('/success')
+            })
+            .catch(err=>{
+                dispatch(setSpinner(false))
+            })
     }
 
     const [message, setMessage] = useState()
@@ -215,13 +235,40 @@ function Finalize(props) {
                         </div>
                     </div>
 
+                    <div className="modal fade Modal-Man-Date" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="Cancel-modal">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="Modal-Header">
+                                    توجه !
+                                </div>
+                                <div className="Modal-Body flex-column px-4">
+                                    <p className="text-center">
+                                        آیا از حذف سفارش خود اطمینان دارید؟
+                                    </p>
+                                </div>
+                                <div className="Modal-Footer text-center">
+                                    <button type="button" className="Man-Date-Confirm-Btn mb-1"
+                                            data-dismiss="modal" onClick={cancelOrder}>بله
+                                    </button>
+                                    <button type="button" className="Man-Date-Confirm-Btn mt-1"
+                                            data-dismiss="modal">انصراف
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
 
 
                 <div className="d-flex row justify-content-center my-4">
+
                     <div className="Car-Piece-Item shadow-sm col-10 Custom-Width">
                         <div className="row">
+                            <button type="button" onClick={handleCancel} className="close shadow-sm Delete-Order-Badge" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             <div className="col-12 Car-Piece-Img border-bottom">
                                 <div className="row mb-2">
 
@@ -232,7 +279,7 @@ function Finalize(props) {
                                                     {suggest.car_brand_name} {suggest.car_model_name}
                                                 </div>
                                                 <div className="col-6 pt-2">
-                                                    <img className="Car-Piece-Img" src={suggest.car_model_pic}/>
+                                                    <img alt={suggest.car_brand_name} className="Car-Piece-Img" src={suggest.car_model_pic}/>
                                                 </div>
                                             </React.Fragment>
                                             :
@@ -242,25 +289,30 @@ function Finalize(props) {
                                 </div>
                             </div>
                             <hr/>
-                            <div className="col-12">
-                                <div className="row">
-                                    <ol className="Pieces-List">
 
-                                        {suggest ?
-                                            suggest.suggestion.map(piece => (
-                                                <li key={piece.product_id}>
-                                                    <div className="col-10 p-0 mt-3">
+                            {
+                                suggest?
+                                    suggest.type==='price'?
+                                        <div className="col-12">
+                                            <div className="row">
+
+                                                <ol className="Pieces-List">
+
+                                                    {suggest?
+                                                        suggest.suggestion.map(piece => (
+                                                        <li key={piece.product_id}>
+                                                        <div className="col-10 p-0 mt-3">
                                                         <button type="button" className="close" onClick={()=>checkModal(piece)} data-dismiss="alert" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
-                                                            <span className="Piece-List-item-Title">
-                                                                {piece.product_name}
-                                                            </span>
+                                                        <span className="Piece-List-item-Title">
+                                                        {piece.product_name}
+                                                        </span>
                                                         <span className="Piece-List-item-Serial">
-                                                                {piece.product_code ? `(${piece.product_code})` : ''}
-                                                            </span>
-                                                    </div>
-                                                    <div className="">
+                                                        {piece.product_code ? `(${piece.product_code})` : ''}
+                                                        </span>
+                                                        </div>
+                                                        <div className="">
 
                                                         {
                                                             piece.suggests.map((sug, idy) => (
@@ -280,21 +332,36 @@ function Finalize(props) {
                                                             ))
                                                         }
 
-                                                    </div>
-                                                    {/*<p className="Piece-Degree-Description">*/}
-                                                    {/*    توضیحات : {piece.description}*/}
-                                                    {/*</p>*/}
-                                                </li>
-                                            ))
-                                            :
-                                            ''
-                                        }
+                                                        </div>
+                                                        {/*<p className="Piece-Degree-Description">*/}
+                                                        {/*    توضیحات : {piece.description}*/}
+                                                        {/*</p>*/}
+                                                        </li>
+                                                        ))
+                                                        :
+                                                        ''
+                                                    }
 
-                                    </ol>
-                                </div>
-                            </div>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    :
+                                        <div className="col-12">
+                                            <div className="col-12 pb-3 pt-2 mt-3">
+                                                <p style={{fontSize:'12pt',textAlign:"center"}}>
+                                                    {suggest.suggestion}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    :
+                                ''
+                            }
+
                         </div>
                     </div>
+
+
+
                     <div id="calc-box" className="Car-Piece-Item shadow-sm col-10 Custom-Width">
                         <div className="row">
                             <hr/>
@@ -333,8 +400,8 @@ function Finalize(props) {
 
                     <div className="col-10 Custom-Width mt-3 mb-2">
                         <div className="row d-flex">
-                            <button className="Piece-Confirm-Btn mr-0 shadow-sm" onClick={handleSubmit}>تایید نهایی</button>
-                            <a className="Back-Btn Call-Link shadow-sm" href='tel:+2133124568'>تماس</a>
+                            <button className="Piece-Confirm-Btn mr-0 shadow-sm" onClick={handleSubmit}>خرید میکنم</button>
+                            <a className="Back-Btn Call-Link shadow-sm" href='tel:+2191303101'>تماس</a>
                         </div>
                     </div>
 

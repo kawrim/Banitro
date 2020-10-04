@@ -17,6 +17,7 @@ import {setToken} from "./api/api";
 import {initializeApp} from "firebase"
 import TagManager from 'react-gtm-module'
 import ReactGA from 'react-ga';
+import {SnackbarProvider} from "notistack";
 
 const User_id=localStorage.getItem('id');
 const User_token=localStorage.getItem('token');

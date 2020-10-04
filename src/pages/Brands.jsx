@@ -86,6 +86,7 @@ function Brands(props) {
                     }
 
                 </div>
+
             </div>
 
         </React.Fragment>

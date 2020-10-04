@@ -179,7 +179,7 @@ function Profile(props) {
                     <div className="col-10 mx-auto mb-4">
                         <div className="row d-flex">
                             <button className="Back-Btn mr-0 shadow-sm" onClick={goToBrands}>سفارش جدید</button>
-                            <button className="Back-Btn shadow-sm" onClick={goToReports}>گزارشات</button>
+                            <button className="Back-Btn shadow-sm" onClick={goToReports}>سفارشات من</button>
                         </div>
                     </div>
 
@@ -213,7 +213,7 @@ function Profile(props) {
                                                     key === 'phonenumber' ?
                                                         <React.Fragment>
                                                             <label className="Profile-Input-Label" htmlFor={key}>شماره موبایل</label>
-                                                            <input name={key} disabled={!!btnEdit} value={profile[key]} type='tel' onChange={(e) => handleChange(e)} className='Profile-Input'/>
+                                                            <input name={key} disabled={!!btnEdit} readOnly value={profile[key]} type='tel' onChange={(e) => handleChange(e)} className='Profile-Input'/>
                                                         </React.Fragment>
                                                         :
                                                         key === 'referral_code' ?

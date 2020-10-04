@@ -12,6 +12,7 @@ import {Logout, setBrands} from "../redux/actions/actions";
 import Loading1 from "../assets/icons/clock.svg";
 import {GAmodalView, GAview} from "../index";
 import ReactGA from "react-ga";
+import EmptyImg from "../assets/icons/emptyImg.svg";
 
 
 function Search(props) {
@@ -19,12 +20,12 @@ function Search(props) {
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
         GAmodalView("Request Demo")
+        ReactGA.event({
+            category: 'User',
+            action: 'Sent message'
+        });
     },[])
 
-    ReactGA.event({
-        category: 'User',
-        action: 'Sent message'
-    });
 
     const dispatch=useDispatch()
     const{brandId,modelId}=useParams()
@@ -157,7 +158,6 @@ function Search(props) {
                         ))
 
                         :
-
                             ''
                     }
 

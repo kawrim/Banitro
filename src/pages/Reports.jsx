@@ -3,14 +3,17 @@ import Header from "../components/Header";
 import ConnectionErr from "../components/Connection_Err";
 import {reportReq} from "../api/api";
 import ReportCard from "../components/ReportCard";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Logout, setSpinner} from "../redux/actions/actions";
 import {withRouter} from "react-router-dom"
 import {GAmodalView, GAview} from "../index";
 import ReactGA from "react-ga";
+import FormatListBulletedIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Badge from "@material-ui/core/Badge";
 function Reports(props) {
 
     const dispatch=useDispatch()
+    const notifyCount=useSelector(state=>state.utils.notifyCount)
 
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
@@ -74,7 +77,7 @@ function Reports(props) {
     return(
         <React.Fragment>
 
-            <Header title={'گزارشات'}/>
+            <Header title={'سفارشات من'}/>
 
             <div className="container mt-4">
 
@@ -85,11 +88,23 @@ function Reports(props) {
                         <ul className="nav nav-tabs" id="myTab" role="tablist">
                             <li className="nav-item w-50">
                                 <a className="nav-link active" id="home-tab" data-toggle="tab" href="#Done-Orders"
-                                   role="tab" aria-controls="home" aria-selected="true">انجام شده</a>
+                                   role="tab" aria-controls="home" aria-selected="true">انجام شده
+                                </a>
                             </li>
-                            <li className="nav-item w-50">
+                            <li className="nav-item w-50 position-relative">
+                                {
+                                    notifyCount?
+                                        <div className="Notify-Badge">
+                                            {notifyCount}
+                                        </div>
+                                    :
+                                        ''
+                                }
+
                                 <a className="nav-link" id="profile-tab" data-toggle="tab" href="#Ongoing-Orders"
-                                   role="tab" aria-controls="profile" aria-selected="false">در حال انجام</a>
+                                   role="tab" aria-controls="profile" aria-selected="false">
+                                    در حال انجام
+                                </a>
                             </li>
                         </ul>
 

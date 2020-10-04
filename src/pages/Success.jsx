@@ -4,7 +4,7 @@ import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import Loading from "../assets/icons/clock.svg"
 import Header from "../components/Header";
 import ConnectionErr from "../components/Connection_Err";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setSpinner} from "../redux/actions/actions";
 import {withRouter} from "react-router-dom"
 import {GAmodalView, GAview} from "../index";
@@ -12,6 +12,9 @@ import ReactGA from "react-ga";
 
 
 function Success(props) {
+
+    const cancel=useSelector(state=>state.utils.cancelOrder);
+    const success=useSelector(state=>state.utils.successOrder);
 
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
@@ -25,16 +28,14 @@ function Success(props) {
 
     const dispatch=useDispatch()
 
-    const[message,setMessage]=useState()
-
-    const orderId=localStorage.getItem('order_id')
+    // const[message,setMessage]=useState()
 
     useEffect(()=>{
         setTimeout(()=>{
             dispatch(setSpinner(true))
             setTimeout(()=>{
                 dispatch(setSpinner(false))
-                props.history.push('/')
+                props.history.push('/brands')
             },1000)
         },3000)
     },[])
@@ -43,7 +44,7 @@ function Success(props) {
         dispatch(setSpinner(true))
         setTimeout(()=>{
             dispatch(setSpinner(false))
-            props.history.push('/')
+            props.history.push('/brands')
         },1000)
     }
 
@@ -55,7 +56,7 @@ function Success(props) {
 
             <div className="container">
 
-                <ConnectionErr message={message}/>
+                {/*<ConnectionErr message={message}/>*/}
 
                 <div className="row">
                     <div className="col-12">
@@ -67,7 +68,15 @@ function Success(props) {
 
                                 <div>
                                     <p className="Success-Text">
-                                        سفارش شما با موفقیت ثبت شد
+                                        {
+                                            success?
+                                                "سفارش شما با موفقیت ثبت شد!"
+                                                :
+                                            cancel?
+                                                    "سفارش شما لغو گردید"
+                                                :
+                                            ''
+                                        }
                                     </p>
                                 </div>
                             </div>
