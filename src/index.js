@@ -35,9 +35,9 @@ export const initGA=()=>{
 export const GAview=(page)=>{
     ReactGA.pageview(page);
 }
-export const GAmodalView=(modal)=>{
-    ReactGA.modalview(modal);
-}
+// export const GAmodalView=(modal)=>{
+//     ReactGA.modalview(modal);
+// }
 
 
 const tagManagerArgs = {

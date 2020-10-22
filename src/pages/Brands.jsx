@@ -6,14 +6,14 @@ import {Logout, setBrands, setSpinner} from "../redux/actions/actions";
 import {useDispatch, useSelector} from "react-redux";
 import Brand from "../components/Brand";
 import ConnectionErr from "../components/Connection_Err";
-import {GAmodalView, GAview} from "../index";
+import { GAview} from "../index";
 import ReactGA from "react-ga";
 
 function Brands(props) {
 
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
-        GAmodalView("Request Demo")
+        // GAmodalView("Request Demo")
     },[])
 
     ReactGA.event({

@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import {useParams} from "react-router-dom"
 import {useDispatch} from "react-redux";
 import Model from "../components/Model";
-import {GAmodalView, GAview} from "../index";
+import { GAview} from "../index";
 import ReactGA from "react-ga";
 
 
@@ -11,7 +11,7 @@ function Models(props) {
 
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
-        GAmodalView("Request Demo")
+        // GAmodalView("Request Demo")
     },[])
 
     ReactGA.event({

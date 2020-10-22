@@ -6,7 +6,7 @@ import ReportCard from "../components/ReportCard";
 import {useDispatch, useSelector} from "react-redux";
 import {Logout, setSpinner} from "../redux/actions/actions";
 import {withRouter} from "react-router-dom"
-import {GAmodalView, GAview} from "../index";
+import { GAview} from "../index";
 import ReactGA from "react-ga";
 import FormatListBulletedIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Badge from "@material-ui/core/Badge";
@@ -17,7 +17,7 @@ function Reports(props) {
 
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
-        GAmodalView("Request Demo")
+        // GAmodalView("Request Demo")
     },[])
 
     ReactGA.event({

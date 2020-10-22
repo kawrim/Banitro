@@ -7,7 +7,7 @@ import {cancelReq, checkReq, finalDataReq, finalReq, setToken} from "../api/api"
 import {Logout, setCancelOrder, setSpinner, setSuccessOrder, updateNotify} from "../redux/actions/actions";
 import {useDispatch} from "react-redux";
 import {showPrice} from "../components/functions";
-import {GAmodalView, GAview} from "../index";
+import { GAview} from "../index";
 import ReactGA from "react-ga";
 import $ from "jquery";
 import {keys} from "@material-ui/core/styles/createBreakpoints";
@@ -17,7 +17,7 @@ function Finalize(props) {
 
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
-        GAmodalView("Request Demo")
+        // GAmodalView("Request Demo")
     },[])
 
     ReactGA.event({

@@ -15,14 +15,14 @@ import ConnectionErr from "../components/Connection_Err";
 import {useDispatch} from "react-redux";
 import {setSpinner} from "../redux/actions/actions";
 import $ from "jquery"
-import {GAmodalView, GAview} from "../index";
+import { GAview} from "../index";
 import ReactGA from "react-ga";
 
 function PieceOptions(props) {
 
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
-        GAmodalView("Request Demo")
+        // GAmodalView("Request Demo")
     },[])
 
     ReactGA.event({

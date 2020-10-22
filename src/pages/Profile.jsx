@@ -13,7 +13,7 @@ import {useDispatch} from "react-redux";
 import {Logout, setSpinner} from "../redux/actions/actions";
 import {withRouter} from "react-router-dom"
 import SuccessMsg from "../components/SuccessMsg";
-import {GAmodalView, GAview} from "../index";
+import { GAview} from "../index";
 import ReactGA from "react-ga";
 
 
@@ -31,7 +31,7 @@ function Profile(props) {
 
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
-        GAmodalView("Request Demo")
+        // GAmodalView("Request Demo")
     },[])
 
     ReactGA.event({

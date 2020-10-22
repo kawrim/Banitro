@@ -11,7 +11,7 @@ import SuccessMsg from "../components/SuccessMsg";
 
 import TagManager from 'react-gtm-module'
 import ReactGA from "react-ga";
-import {GAmodalView, GAview} from "../index";
+import { GAview} from "../index";
 
 
 const tagManagerArgs = {
@@ -28,7 +28,7 @@ function Authorize(props) {
 
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
-        GAmodalView("Request Demo")
+        // GAmodalView("Request Demo")
     },[])
 
     ReactGA.event({

@@ -6,14 +6,14 @@ import {orderSubmitReq, profileEditReq, profileReq} from "../api/api";
 import ConnectionErr from "../components/Connection_Err";
 import {Logout, setSpinner} from "../redux/actions/actions";
 import {useDispatch} from "react-redux";
-import {GAmodalView, GAview} from "../index";
+import { GAview} from "../index";
 import ReactGA from "react-ga";
 
 function Shipping(props) {
 
     useEffect(()=>{
         GAview(window.location.pathname + window.location.search);
-        GAmodalView("Request Demo")
+        // GAmodalView("Request Demo")
     },[])
 
     ReactGA.event({
