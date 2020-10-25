@@ -13,7 +13,7 @@ function Toast (props) {
     const [foreGround,setForeGround]=useState(true)
 
     document.addEventListener('visibilitychange', () => {
-        console.log(document.visibilityState);
+        // console.log(document.visibilityState);
         if (document.visibilityState==='hidden'){
             setForeGround(false)
         }

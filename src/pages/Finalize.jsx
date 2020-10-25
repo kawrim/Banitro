@@ -42,6 +42,8 @@ function Finalize(props) {
 
     const [index,setIndex]=useState(null)
 
+    const [buyActive,setBuyActive]=useState(false)
+
     useEffect(() => {
         dispatch(setSpinner(true))
         // setToken()
@@ -84,6 +86,7 @@ function Finalize(props) {
 
     let sumition = 0;
     const handleOption = (e) => {
+        setBuyActive(true)
         const {name, value} = e.target;
         // price = e.target.getAttribute('data-price')
         var radioElements = document.getElementsByClassName('option_radio');
@@ -129,6 +132,10 @@ function Finalize(props) {
         }
         delete TempSelected[I]
         setSelected(TempSelected)
+
+        if (Object.keys(selected).length === 0 && selected.constructor === Object){
+            setBuyActive(false)
+        }
     };
 
     const checkModal=(piece)=>{
@@ -400,7 +407,7 @@ function Finalize(props) {
 
                     <div className="col-10 Custom-Width mt-3 mb-2">
                         <div className="row d-flex">
-                            <button className="Piece-Confirm-Btn mr-0 shadow-sm" onClick={handleSubmit}>خرید میکنم</button>
+                            <button className="Piece-Confirm-Btn mr-0 shadow-sm" disabled={!buyActive} onClick={handleSubmit}>خرید میکنم</button>
                             <a className="Back-Btn Call-Link shadow-sm" href='tel:+2191303101'>تماس</a>
                         </div>
                     </div>

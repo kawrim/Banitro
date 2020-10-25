@@ -40,6 +40,7 @@ body {
 .App{
   max-width: 538px!important;
   min-height: 100vh;
+  /*background-image: linear-gradient(to bottom left , #0050a4, #0056bb)!important;*/
   background-image: linear-gradient(to bottom left , #0050a4, #0056bb)!important;
   padding-bottom: 5rem;
   position: relative;
@@ -446,6 +447,12 @@ input[type="radio"], input[type="checkbox"] {
   line-height: 1.5;
   border-radius: 0.5rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.Piece-Confirm-Btn:disabled{
+  color: #919191;
+  box-shadow: 0 0 0 !important;
+  opacity: .9;
+
 }
 .Back-Btn{
   width: 48%;
